@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
     role: user.role,
     token: generateToken(user._id, user.role),
   });
-};
+}; 
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -32,4 +32,4 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser }; // ✅ must export both
+module.exports = { registerUser, loginUser };
