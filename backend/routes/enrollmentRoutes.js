@@ -6,6 +6,6 @@ const { enrollInCourse, getMyCourses } = require("../controllers/enrollmentContr
 const router = express.Router();
 
 router.post("/:id/enroll", protect, authorizeRoles("Learner"), enrollInCourse);
-router.get("/my", protect, authorizeRoles("Learner"), getMyCourses);
+router.get("/my-courses", protect, authorizeRoles("Learner"), getMyCourses);
 
 module.exports = router;

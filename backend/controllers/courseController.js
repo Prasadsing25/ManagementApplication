@@ -11,6 +11,25 @@ const getCourses = async (req, res) => {
   res.json(courses);
 };
 
+const getCourseById = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({
+        message: "Course not found"
+      });
+    }
+
+    res.status(200).json(course);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error fetching course",
+      error: error.message
+    });
+  }
+};
+
 const updateCourse = async (req, res) => {
   const course = await Course.findById(req.params.id);
   if (!course) return res.status(404).json({ message: "Course not found" });
@@ -36,4 +55,4 @@ const enrollCourse = async (req, res) => {
   res.json({ message: "Enrolled successfully" });
 };
 
-module.exports = { createCourse, getCourses, updateCourse, deleteCourse, enrollCourse };
+module.exports = { createCourse, getCourses, getCourseById, updateCourse, deleteCourse, enrollCourse };
